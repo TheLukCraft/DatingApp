@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,6 @@ export class AccountService {
   baseUerUrl = 'https://localhost:5001/api/';
 
   login(model: any) {
-    return this.http.get(this.baseUerUrl + 'account/login', model);
+    return this.http.post(this.baseUerUrl + 'account/login', model);
   }
 }

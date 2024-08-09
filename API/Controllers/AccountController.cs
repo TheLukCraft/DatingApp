@@ -37,6 +37,7 @@ public class AccountController(DataContext context, ITokenService tokenService) 
             Token = tokenService.CreateToken(user)
         };
     }
+    [AllowAnonymous]
     [HttpPost("login")]
     public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
     {
