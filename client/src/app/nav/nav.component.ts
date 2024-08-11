@@ -1,4 +1,4 @@
-import { routes } from './../app.routes';
+
 import { AccountService } from './../_services/account.service';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
