@@ -1,7 +1,8 @@
+import { Photo } from './../_models/photo';
 import { JsonPipe } from '@angular/common';
 import { AccountService } from './../_services/account.service';
 import { Component, inject, input, OnInit, output } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -26,8 +27,17 @@ export class RegisterComponent implements OnInit {
     this.registerForm = new FormGroup({
       username: new FormControl('Hello', Validators.required),
       password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
-      confirmPassword: new FormControl('',[Validators.required]),
+      confirmPassword: new FormControl('',[Validators.required, this.matchValues('password')]),
+      });
+      this.registerForm.controls['password']?.valueChanges.subscribe({
+        next: () => this.registerForm.controls['confirmPassword']?.updateValueAndValidity()
       })
+  }
+
+  matchValues(matchTo: string) : ValidatorFn {
+    return (control: AbstractControl) => {
+      return control.value === control.parent?.get(matchTo)?.value ? null : {isMatching: true}
+    }
   }
 
   register() {
