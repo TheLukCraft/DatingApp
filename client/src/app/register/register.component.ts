@@ -1,5 +1,5 @@
 import { Photo } from './../_models/photo';
-import { JsonPipe } from '@angular/common';
+import { JsonPipe, NgIf } from '@angular/common';
 import { AccountService } from './../_services/account.service';
 import { Component, inject, input, OnInit, output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, JsonPipe],
+  imports: [ReactiveFormsModule, JsonPipe, NgIf],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
 
   initializeForm(){
     this.registerForm = new FormGroup({
-      username: new FormControl('Hello', Validators.required),
+      username: new FormControl('', Validators.required),
       password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
       confirmPassword: new FormControl('',[Validators.required, this.matchValues('password')]),
       });
