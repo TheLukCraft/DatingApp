@@ -76,11 +76,11 @@ IPhotoService photoService) : BaseApiController
 
         if(user == null) return BadRequest("Could not find user");
 
-        var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
+        var photo = user.Photos?.FirstOrDefault(x => x.Id == photoId);
 
         if(photo == null || photo.IsMain) return BadRequest("This is already your main photo");
 
-        var currentMain = user.Photos.FirstOrDefault(x => x.IsMain);
+        var currentMain = user.Photos?.FirstOrDefault(x => x.IsMain);
         if(currentMain != null) currentMain.IsMain = false;
         photo.IsMain = true;
 
