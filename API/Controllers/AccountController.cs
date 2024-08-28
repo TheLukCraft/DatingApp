@@ -24,6 +24,7 @@ public class AccountController(DataContext context, ITokenService tokenService, 
 
         var user = mapper.Map<AppUser>(registerDto);
 
+
         user.Interests = "whatever";
         user.UserName = registerDto.Username.ToLower();
         user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
