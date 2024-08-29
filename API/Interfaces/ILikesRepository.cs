@@ -6,7 +6,7 @@ namespace API.Interfaces;
 
 public interface ILikesRepository
 {
-    Task<UserLike?> GetUserLike(int sourceUserId, int likedUserId);
+    Task<UserLike?> GetUserLike(int sourceUserId, int targetUserId);
     Task<IEnumerable<MemberDto>> GetUserLikes(string predicate, int userId);
     Task<IEnumerable<int>> GetCurrentLikeIds(int currentUserId);
     void DeleteLike(UserLike userLike);
