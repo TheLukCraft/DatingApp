@@ -4,24 +4,19 @@ import { ActivatedRoute } from '@angular/router';
 import { Member } from '../../_models/member';
 import { TabsModule} from 'ngx-bootstrap/tabs';
 import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
-import { TimeagoModule } from 'ngx-timeago';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-member-detail',
   standalone: true,
-  imports: [TabsModule, GalleryModule, TimeagoModule, DatePipe],
+  imports: [TabsModule, GalleryModule],
   templateUrl: './member-detail.component.html',
-  styleUrls: ['./member-detail.component.css']
+  styleUrl: './member-detail.component.css'
 })
 export class MemberDetailComponent implements OnInit {
+  private memberService = inject(MembersService);
+  private route = inject(ActivatedRoute)
   member?: Member
   images: GalleryItem[] = [];
-
-  constructor(
-    private memberService: MembersService,
-    private route: ActivatedRoute
-  ) {}
 
   ngOnInit(): void {
     this.loadMember();
