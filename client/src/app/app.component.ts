@@ -5,11 +5,12 @@ import { NavComponent } from "./nav/nav.component";
 import { User } from './_models/user';
 import { AccountService } from './_services/account.service';
 import { HomeComponent } from "./home/home.component";
+import { NgxSpinnerComponent } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgFor, NavComponent, HomeComponent],
+  imports: [RouterOutlet, NgFor, NavComponent, HomeComponent, NgxSpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -25,6 +26,6 @@ export class AppComponent implements OnInit{
     const userString = localStorage.getItem('user');
     if(!userString) return;
     const user: User = JSON.parse(userString);
-    this.accountService.currentUser.set(user);
+    this.accountService.setCurrentUser(user);
   }
 }

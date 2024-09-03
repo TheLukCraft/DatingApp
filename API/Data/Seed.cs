@@ -35,7 +35,7 @@ public class Seed
         await context.SaveChangesAsync();
     }
 
-    internal static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
+    internal static void SeedData(DataContext context, UserManager<AppUser> userManager)
     {
         throw new NotImplementedException();
     }
