@@ -11,7 +11,7 @@ export class LikesService {
   likeIds = signal<number[]>([]);
 
   toggleLike(targetId: number) {
-    return this.http.post('${this.baseUrl}likes/${targetId}', {})
+    return this.http.post(`${this.baseUrl}likes/${targetId}`, {})
   }
 
   getLikes(predicte: string) {
