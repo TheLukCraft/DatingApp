@@ -39,7 +39,7 @@
     </thead>
     <tbody class="align-middle">
       @for (message of messageService.paginatedResult()?.items; track message.id) {
-        <tr routerLink="{getRoute(message)}">
+        <tr routerLink="{{getRoute(message)}}">
           <td>{{message.content}}</td>
           <td>
             <div>
